@@ -11,7 +11,6 @@ const App = () => {
 
   return (
     <div>
-     
       <button className="btn" onClick={handleModalToggle}>Show Modal</button>
       <Modal show={isModalOpen} onClose={handleModalToggle}>
         <p className="model-p">This is the content of the modal.</p>
@@ -21,4 +20,5 @@ const App = () => {
 };
 
 export default App;
+
 

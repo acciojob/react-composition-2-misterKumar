@@ -1,25 +1,29 @@
 import React from 'react';
 
 const Modal = ({ show, onClose, children }) => {
-  if (!show) {
-    return null;
-  }
-
   const handleModalClose = () => {
     onClose();
   };
 
+  const handleOverlayClick = (e) => {
+    if (e.target.classList.contains('model-overlay')) {
+      handleModalClose();
+    }
+  };
+
   return (
-    <div className="model-overlay">
-      <div className="modal-dialog">
-        <button className="model-close" onClick={handleModalClose}>
-          Close
-        </button>
-        <div className="modal-content">
-          {children}
-        </div>
+    show && (
+      <div className="model-overlay" onClick={handleOverlayClick}>
+       
+          <button className="model-close" onClick={handleModalClose}>
+            Close
+          </button>
+          <div className="modal-content">
+            {children}
+          </div>
+      
       </div>
-    </div>
+    )
   );
 };
 
