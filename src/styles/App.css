@@ -1,4 +1,4 @@
-.btn{
+ .btn{
     background-color: rgb(197,80,80);
     color: rgb(252,240,240);
     border:none;
@@ -29,4 +29,6 @@
 }
 .model-p{
     margin-left: 30px;
+    padding: 20px;
 }
+ 

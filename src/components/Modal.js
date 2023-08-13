@@ -1,30 +1,48 @@
-import React from 'react';
+
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
+
 
 const Modal = ({ show, onClose, children }) => {
-  const handleModalClose = () => {
-    onClose();
-  };
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      const modalOverlay = document.querySelector('.model-overlay');
+      if (modalOverlay && !modalOverlay.contains(event.target)) {
+        onClose();
+      }
+    };
 
-  const handleOverlayClick = (e) => {
-    if (e.target.classList.contains('model-overlay')) {
-      handleModalClose();
+    if (show) {
+      document.addEventListener('click', handleOutsideClick);
     }
-  };
+
+    return () => {
+      document.removeEventListener('click', handleOutsideClick);
+    };
+  }, [show, onClose]);
 
   return (
-    show && (
-      <div className="model-overlay" onClick={handleOverlayClick}>
-       
-          <button className="model-close" onClick={handleModalClose}>
-            Close
-          </button>
-          <div className="modal-content">
+    <>
+      {show && (
+        <div className="model-overlay">
+          <div className="model-content">
             {children}
+            <button className="model-close" onClick={onClose}>
+              Close
+            </button>
+            <p className="model-p">This is the content of the modal.</p>
+            
           </div>
-      
-      </div>
-    )
+        </div>
+      )}
+    </>
   );
+};
+
+Modal.propTypes = {
+  show: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default Modal;

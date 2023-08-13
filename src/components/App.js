@@ -1,24 +1,27 @@
+
 import React, { useState } from 'react';
 import Modal from './Modal';
-import "../styles/App.css";
+import '../styles/App.css';
 
-const App = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+function App() {
+  const [modalVisible, setModalVisible] = useState(false);
 
-  const handleModalToggle = () => {
-    setIsModalOpen(!isModalOpen);
+  const openModal = () => {
+    setModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
   };
 
   return (
-    <div>
-      <button className="btn" onClick={handleModalToggle}>Show Modal</button>
-      <Modal show={isModalOpen} onClose={handleModalToggle}>
-        <p className="model-p">This is the content of the modal.</p>
+    <div className="app">
+      <button  className="btn" onClick={openModal}>Open Modal</button>
+      <Modal show={modalVisible} onClose={closeModal}>
+       
       </Modal>
     </div>
   );
-};
+}
 
 export default App;
-
-
