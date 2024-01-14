@@ -1,1 +1,16 @@
-{}
+{it('should close modal when clicking outside', () => {
+    cy.visit('your_app_url');
+  
+    // Open the modal
+    cy.get('.btn').click();
+  
+    // Verify that the modal is visible
+    cy.get('.model-overlay').should('be.visible');
+  
+    // Click outside the modal
+    cy.get('.app').click(); // Clicking the parent element
+  
+    // Verify that the modal is no longer visible
+    cy.get('.model-overlay').should('not.be.visible');
+  });
+  }
